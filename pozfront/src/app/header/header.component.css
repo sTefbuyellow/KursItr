@@ -1,0 +1,19 @@
+.header{
+  padding: 5px 20px;
+  background-color: #6c3995
+}
+
+.homeHref{
+  float: left;
+  color: #24292e;
+  text-decoration: none;
+}
+
+.loginHref,.signUpHref{
+  color: #24292e;
+  text-decoration: none;
+  float: right;
+  padding-top: 10px;
+}
+
+
