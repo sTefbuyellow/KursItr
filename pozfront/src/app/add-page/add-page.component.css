@@ -1,11 +1,12 @@
-.add-post-content{
+
+.add-page-content{
   padding-top: 20px;
 }
 
-.new-post-title{
+.new-page-title{
   color: royalblue;
 }
 
-.post-content, .post-title{
+.page-content, .post-page{
   color: royalblue;
 }
