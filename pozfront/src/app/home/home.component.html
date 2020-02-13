@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="content">
+  <div class="container">
+    <div class="row" *ngFor="let page of pages | async">
+      <div class="page">
+        <h3><a href="/page/{{page.id}}" class="name">{{page.name}}</a></h3>
+        <div>
+          <i class="fas fa-user"></i> Author: <p>{{page.username}}</p>
+        </div>
+        <p [innerHTML]="page.tag"></p>
+        <div>
+          <a type="button" href="/page/{{page.id}}" class="read-more btn btn-default">Read More</a>
+        </div>
+        <hr>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>

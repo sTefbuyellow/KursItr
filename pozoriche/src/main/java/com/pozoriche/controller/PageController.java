@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pages/")
+@RequestMapping("/api/pages")
 public class PageController {
 
     @Autowired

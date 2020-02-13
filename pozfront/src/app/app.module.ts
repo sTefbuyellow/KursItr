@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { AddPageComponent} from './add-page/add-page.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {HttpClientInterceptor} from './http-client-interceptor';
+import { PageComponent } from './page/page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClientInterceptor} from './http-client-interceptor';
     LoginComponent,
     RegisterSuccessComponent,
     HomeComponent,
-    AddPageComponent
+    AddPageComponent,
+    PageComponent
   ],
     imports: [
         BrowserModule,
@@ -34,6 +36,8 @@ import {HttpClientInterceptor} from './http-client-interceptor';
         ReactiveFormsModule,
         Ng2Webstorage.forRoot(),
         RouterModule.forRoot([
+          {path: 'page/:id', component: PageComponent},
+          {path: '', component: HomeComponent},
           {path: 'home', component: HomeComponent},
           {path: 'add-page', component: AddPageComponent},
           {path: 'register', component: RegisterComponent},

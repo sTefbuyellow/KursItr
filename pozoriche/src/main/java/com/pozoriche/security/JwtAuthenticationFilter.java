@@ -1,5 +1,6 @@
 package com.pozoriche.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,12 +28,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String jwt = getJtwFromRequest(httpServletRequest);
 
-        if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)){
-           String username = jwtProvider.getUsernameFromJWT(jwt);
-
+        if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
+            String username = jwtProvider.getUsernameFromJWT(jwt);
+            System.out.print(username);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
-                   null, userDetails.getAuthorities());
+                    null, userDetails.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
@@ -40,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String getJtwFromRequest(HttpServletRequest httpServletRequest) {
-        String bearerToken = httpServletRequest.getHeader("Authorisation");
+        String bearerToken = httpServletRequest.getHeader("Authorization");
 
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
