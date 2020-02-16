@@ -54,4 +54,10 @@ public class PageService {
         Page page = mapFromDtoToPage(pageDto);
         pageRepository.save(page);
     }
+
+    public List<PageDto> findPages(String name){
+        List<Page> pages = pageRepository.findByTagOrName(name, name);
+        return pages.stream().map(this::mapFromPageToDto).collect(toList());
+    }
+
 }

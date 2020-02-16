@@ -22,4 +22,8 @@ export class AddPageService {
   getOnePage(pageId: number): Observable<PagePayload> {
     return this.httpClient.get<PagePayload>('http://localhost:8080/api/pages/get/' + pageId);
   }
+
+  findPages(name: string): Observable<Array<PagePayload>> {
+    return this.httpClient.get<Array<PagePayload>>('http://localhost:8080/api/pages/get/find/' + name);
+  }
 }

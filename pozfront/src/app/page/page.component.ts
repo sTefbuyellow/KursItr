@@ -15,6 +15,7 @@ export class PageComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private pageService: AddPageService) {
     this.page = {
+      id: '',
       name: '',
       username: '',
       tag: '',

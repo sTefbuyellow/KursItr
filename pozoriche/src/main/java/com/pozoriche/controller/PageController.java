@@ -30,7 +30,12 @@ public class PageController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<PageDto> getSinglePage(@PathVariable @RequestBody Long id){
+    public ResponseEntity<PageDto> findPage(@PathVariable @RequestBody Long id){
         return new ResponseEntity<>(pageService.getSinglePage(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/find/{name}")
+    public ResponseEntity<List<PageDto>> getSinglePage(@PathVariable @RequestBody String name){
+        return new ResponseEntity<>(pageService.findPages(name), HttpStatus.OK);
     }
 }

@@ -17,11 +17,9 @@
   padding-right: 5px;
 }
 
-.newPost{
+.newPost,.logout,.search{
   color: #24292e;
   text-decoration: none;
   float: right;
   padding-top: 10px;
 }
-
-

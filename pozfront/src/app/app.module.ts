@@ -16,6 +16,9 @@ import { AddPageComponent} from './add-page/add-page.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {HttpClientInterceptor} from './http-client-interceptor';
 import { PageComponent } from './page/page.component';
+import {AuthGuard} from './auth.guard';
+import { SearchComponent } from './search/search.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { PageComponent } from './page/page.component';
     RegisterSuccessComponent,
     HomeComponent,
     AddPageComponent,
-    PageComponent
+    PageComponent,
+    SearchComponent,
+    UserComponent
   ],
     imports: [
         BrowserModule,
@@ -39,7 +44,8 @@ import { PageComponent } from './page/page.component';
           {path: 'page/:id', component: PageComponent},
           {path: '', component: HomeComponent},
           {path: 'home', component: HomeComponent},
-          {path: 'add-page', component: AddPageComponent},
+          {path: 'search/:name', component: SearchComponent},
+          {path: 'add-page', component: AddPageComponent, canActivate: [AuthGuard]},
           {path: 'register', component: RegisterComponent},
           {path: 'login', component: LoginComponent},
           {path: 'register-success', component: RegisterSuccessComponent}

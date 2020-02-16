@@ -1,13 +1,21 @@
 <div class="header">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h1><a href="" class="homeHref">MMoney</a></h1>
+      <div class="col-md-3">
+      <h1><a href="" class="homeHref">MMoney</a></h1>
+    </div>
+      <div class="col-md-3">
+        <div class="search">
+          <div>
+            <input type="text" name="search" [(ngModel)]="search" (keydown.enter)="searchSend(search)" placeholder="Search"/>
+          </div>
+        </div>
       </div>
       <div class="col-md-3" *ngIf="authService.isAuthenticated()">
         <a href="/add-page" class="newPost">Add page</a>
+        <button class="logout btn btn-default" (click)="logout()">Logout</button>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3" *ngIf="!authService.isAuthenticated()">
         <a href="/login" class="loginHref">Login</a>
         <a href="/register" class="signUpHref">Sign Up</a>
       </div>
