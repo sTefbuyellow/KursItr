@@ -1,36 +1,15 @@
-package com.pozoriche.model;
+package com.pozoriche.dto;
 
+import com.pozoriche.model.UserRole;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import javax.persistence.Column;
 
-import javax.persistence.*;
+public class UserDto {
 
-@Entity
-@Table(name = "usr")
-@AllArgsConstructor
-public class User {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String userName;
-
-    @Column
-    private String password;
-
-    @Column
     private String email;
-
-    @Column
-    @Enumerated(EnumType.STRING)
     private UserRole role;
-
-    public User() {
-    }
 
     public Long getId() {
         return id;
@@ -46,14 +25,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {

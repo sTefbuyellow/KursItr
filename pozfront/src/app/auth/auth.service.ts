@@ -12,6 +12,7 @@ import {LocalStorageService} from 'ngx-webstorage';
 })
 export class AuthService {
   private url = 'http://localhost:8080/api/auth/';
+  role: string;
 
   constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) { }
 
@@ -23,12 +24,21 @@ export class AuthService {
     return this.httpClient.post<JwtAuthResponse>(this.url + 'login', loginPayload).pipe(map (data => {
       this.localStorageService.store('authenticationToken', data.authenticationToken);
       this.localStorageService.store('username', data.username);
+      this.localStorageService.store('role', data.role);
       return true;
     }));
   }
 
   isAuthenticated(): boolean {
     return this.localStorageService.retrieve('username') != null;
+  }
+
+  isAdmin(): boolean {
+    this.role = this.localStorageService.retrieve('role');
+    if (this.role === '[ROLE_ADMIN]') {
+      return true;
+    }
+    return false;
   }
 
   logout() {

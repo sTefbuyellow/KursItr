@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../user.service';
+import {UserPayload} from './user-payload';
+import {PagePayload} from '../add-page/page-payload';
+import {ActivatedRoute} from '@angular/router';
+import {AddPageService} from '../add-page.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  user: UserPayload;
+  userId: number;
 
-  ngOnInit() {
+  constructor(private userService: UserService, private router: ActivatedRoute) {
+    this.user = {
+      id: '',
+      userName: '',
+      email: '',
+    };
   }
 
+  ngOnInit() {
+    this.router.params.subscribe(params => {
+      this.userId = params['id'];
+    });
+    this.userService.getOneUser(this.userId).subscribe((data: UserPayload) => {
+      console.log(data);
+      this.user = data;
+    }, (err: any) => {
+      console.log('Failure response');
+    });
+  }
 }

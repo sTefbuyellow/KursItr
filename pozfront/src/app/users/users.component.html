@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="container">
+    <div class="row" *ngFor="let user of users | async">
+      <div class="page">
+        <h3><a href="/user/{{user.id}}" class="name">{{user.userName}}</a></h3>
+        <div>
+          <i class="fas fa-user"></i><p>{{user.email}}</p>
+        </div>
+        <hr>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>

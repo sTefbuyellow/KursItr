@@ -19,6 +19,7 @@ import { PageComponent } from './page/page.component';
 import {AuthGuard} from './auth.guard';
 import { SearchComponent } from './search/search.component';
 import { UserComponent } from './user/user.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserComponent } from './user/user.component';
     AddPageComponent,
     PageComponent,
     SearchComponent,
-    UserComponent
+    UserComponent,
+    UsersComponent
   ],
     imports: [
         BrowserModule,
@@ -44,6 +46,8 @@ import { UserComponent } from './user/user.component';
           {path: 'page/:id', component: PageComponent},
           {path: '', component: HomeComponent},
           {path: 'home', component: HomeComponent},
+          {path: 'users', component: UsersComponent},
+          {path: 'user/:id', component: UserComponent},
           {path: 'search/:name', component: SearchComponent},
           {path: 'add-page', component: AddPageComponent, canActivate: [AuthGuard]},
           {path: 'register', component: RegisterComponent},

@@ -17,7 +17,7 @@
   padding-right: 5px;
 }
 
-.newPost,.logout,.search{
+.newPost,.logout,.search,.profile,.users{
   color: #24292e;
   text-decoration: none;
   float: right;

@@ -1,6 +1,7 @@
 package com.pozoriche.service;
 
 import com.pozoriche.model.User;
+import com.pozoriche.model.UserRole;
 import com.pozoriche.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,10 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUserName(username).orElseThrow(()-> new UsernameNotFoundException("No user found " + username));
         return new org.springframework.security.core.userdetails.User(user.getUserName(),
                 user.getPassword(), true, true, true, true,
-            getAuthorities("ROLE_USER"));
+            getAuthorities(user.getRole().toString()));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
-        return Collections.singletonList(new SimpleGrantedAuthority(role_user));
+    //!
+    private Collection<? extends GrantedAuthority> getAuthorities(String role) {
+        return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 }

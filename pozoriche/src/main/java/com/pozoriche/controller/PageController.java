@@ -1,8 +1,6 @@
 package com.pozoriche.controller;
 
 import com.pozoriche.dto.PageDto;
-import com.pozoriche.model.Page;
-import com.pozoriche.repos.PageRepository;
 import com.pozoriche.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +28,12 @@ public class PageController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<PageDto> findPage(@PathVariable @RequestBody Long id){
+    public ResponseEntity<PageDto> getSinglePage(@PathVariable @RequestBody Long id){
         return new ResponseEntity<>(pageService.getSinglePage(id), HttpStatus.OK);
     }
 
     @GetMapping("/get/find/{name}")
-    public ResponseEntity<List<PageDto>> getSinglePage(@PathVariable @RequestBody String name){
+    public ResponseEntity<List<PageDto>> findPages(@PathVariable @RequestBody String name){
         return new ResponseEntity<>(pageService.findPages(name), HttpStatus.OK);
     }
 }

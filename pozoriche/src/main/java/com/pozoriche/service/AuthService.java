@@ -4,6 +4,7 @@ import com.pozoriche.dto.AuthenticationResponse;
 import com.pozoriche.dto.LoginRequest;
 import com.pozoriche.dto.RegisterRequest;
 import com.pozoriche.model.User;
+import com.pozoriche.model.UserRole;
 import com.pozoriche.repos.UserRepository;
 import com.pozoriche.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class AuthService {
         user.setUserName(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncode(registerRequest.getPassword()));
+        user.setRole(UserRole.ROLE_ADMIN);
         userRepository.save(user);
     }
 
@@ -45,7 +47,9 @@ public class AuthService {
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String authenticationToken = jwtProvider.generateToken(authenticate);
-        return new AuthenticationResponse(authenticationToken, loginRequest.getUsername());
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User)SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        return new AuthenticationResponse(authenticationToken, loginRequest.getUsername(), principal.getAuthorities().toString());
     }
 
     public Optional<org.springframework.security.core.userdetails.User> getCurrentUser(){
