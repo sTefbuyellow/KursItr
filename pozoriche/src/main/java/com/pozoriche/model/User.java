@@ -5,15 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
-@AllArgsConstructor
 public class User {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column
@@ -29,6 +30,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Page> pages;
+
     public User() {
     }
 
@@ -38,6 +43,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPage(Page page) {
+        this.pages.add(page);
     }
 
     public String getUserName() {
@@ -71,4 +84,6 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+
 }

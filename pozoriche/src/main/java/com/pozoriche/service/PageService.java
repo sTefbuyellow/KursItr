@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -17,6 +18,9 @@ public class PageService {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private PageRepository pageRepository;
@@ -35,8 +39,13 @@ public class PageService {
         PageDto pageDto = new PageDto();
         pageDto.setId(page.getId());
         pageDto.setName(page.getName());
-        pageDto.setUsername(page.getUsername());
+        pageDto.setUsername(page.getUser().getUserName());
         pageDto.setTag(page.getTag());
+        pageDto.setCategories(page.getCategories());
+        pageDto.setCreationDate(page.getCreationDate());
+        pageDto.setEndingDate(page.getEndingDate());
+        pageDto.setImages(page.getImages());
+        pageDto.setMoney(page.getMoney());
         return pageDto;
     }
 
@@ -44,14 +53,21 @@ public class PageService {
         Page page = new Page();
         page.setTag(pageDto.getTag());
         page.setName(pageDto.getName());
-        User user = authService.getCurrentUser().orElseThrow(()->
-                new IllegalArgumentException("No User logged in"));
-        page.setUsername(user.getUsername());
+        page.setCategories(pageDto.getCategories());
+        page.setCreationDate(LocalDateTime.now());
+        page.setEndingDate(pageDto.getEndingDate());
+        page.setImages(pageDto.getImages());
+        page.setMoney(pageDto.getMoney());
+        page.setYouTubeVideo(pageDto.getYouTubeVideo());
+        com.pozoriche.model.User user = userService.getUserByName(pageDto.getUsername());
+        page.setUser(user);
         return page;
     }
 
     public void createPage(PageDto pageDto){
+        com.pozoriche.model.User user = userService.getUserByName(pageDto.getUsername());
         Page page = mapFromDtoToPage(pageDto);
+        user.setPage(page);
         pageRepository.save(page);
     }
 

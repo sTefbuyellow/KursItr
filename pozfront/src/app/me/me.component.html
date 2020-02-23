@@ -4,20 +4,10 @@
       <div class="col-md-1"></div>
       <div class="col-md-8">
         <div class="row">
-          <div class="userName col-md-2">
+          <div  class="col-md-2">
             <h1 class="name">{{user.userName}}</h1>
           </div>
-          <div class="col-md-1">
-            <form class="editForm">
-              <button class="editButton"><a href="/edit/{{user.id}}" class="editText">Edit</a></button>
-            </form>
-          </div>
-          <div class="col-md-1">
-            <form class="editForm">
-              <button class="deleteButton" (click)="deleteUser()">delete</button>
-            </form>
-          </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <form class="CreateAs">
               <button class="CreateAs" (click)="createAs(user.userName)">Create Page as</button>
             </form>
@@ -26,8 +16,8 @@
         <span>
           <hr>
             <p>Id: {{user.id}}</p>
+          <hr>
             <p>Email: {{user.email}}</p>
-            <p>Role: {{user.role}}</p>
           <hr>
         </span>
       </div>

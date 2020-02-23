@@ -20,6 +20,8 @@ import {AuthGuard} from './auth.guard';
 import { SearchComponent } from './search/search.component';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users/users.component';
+import { MeComponent } from './me/me.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UsersComponent } from './users/users.component';
     PageComponent,
     SearchComponent,
     UserComponent,
-    UsersComponent
+    UsersComponent,
+    MeComponent,
+    EditUserComponent
   ],
     imports: [
         BrowserModule,
@@ -45,11 +49,13 @@ import { UsersComponent } from './users/users.component';
         RouterModule.forRoot([
           {path: 'page/:id', component: PageComponent},
           {path: '', component: HomeComponent},
+          {path: 'me', component: MeComponent},
+          {path: 'edit/:id', component: EditUserComponent},
           {path: 'home', component: HomeComponent},
           {path: 'users', component: UsersComponent},
           {path: 'user/:id', component: UserComponent},
           {path: 'search/:name', component: SearchComponent},
-          {path: 'add-page', component: AddPageComponent, canActivate: [AuthGuard]},
+          {path: 'add-page/:name', component: AddPageComponent, canActivate: [AuthGuard]},
           {path: 'register', component: RegisterComponent},
           {path: 'login', component: LoginComponent},
           {path: 'register-success', component: RegisterSuccessComponent}

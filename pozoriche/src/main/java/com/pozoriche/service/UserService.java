@@ -48,4 +48,25 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("id: "+id));
         return mapFromUserToDto(user);
     }
+
+    public UserDto refreshUser(Long id, UserDto userDto) {
+        User user = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("id: "+id));
+        user.setUserName(userDto.getUserName());
+        user.setRole(userDto.getRole());
+        user.setEmail(userDto.getEmail());
+        return  mapFromUserToDto(userRepository.save(user));
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("id: "+id));
+        userRepository.deleteById(id);
+    }
+
+    public User getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("id: "+id));
+    }
+
+    public User getUserByName(String name){
+        return userRepository.findByUserName(name).orElseThrow(()-> new UserNotFoundException("name: "+ name));
+    }
 }

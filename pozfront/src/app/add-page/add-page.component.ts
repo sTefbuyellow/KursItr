@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {PagePayload} from './page-payload';
 import {AddPageService} from '../add-page.service';
 import {error} from 'util';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-page',
@@ -12,16 +12,19 @@ import {Router} from '@angular/router';
 })
 export class AddPageComponent implements OnInit {
 
+  otherName = '';
   addPageForm: FormGroup;
   pagePayload: PagePayload;
-  name = new FormControl('');
-  tag = new FormControl('');
-  constructor(private addPageService: AddPageService, private router: Router) { }
+  constructor(private addPageService: AddPageService, private router: Router, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.otherName = params['name'];
+    });
     this.addPageForm = new FormGroup({
-      name: this.name,
-      tag: this.tag,
+      name: new FormControl(''),
+      tag: new FormControl('')
     });
     this.pagePayload = {
       id: '',
@@ -32,13 +35,16 @@ export class AddPageComponent implements OnInit {
   }
 
   addPage() {
+    this.pagePayload.username = this.otherName;
     this.pagePayload.name = this.addPageForm.get('name').value;
     this.pagePayload.tag = this.addPageForm.get('tag').value;
 
+    console.log(this.otherName);
+    console.log(this.pagePayload);
     this.addPageService.addPage(this.pagePayload).subscribe(data => {
       this.router.navigateByUrl('/');
     }, error => {
       console.log(this.pagePayload);
-    } );
+    });
   }
 }

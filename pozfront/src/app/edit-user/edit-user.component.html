@@ -1,0 +1,30 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-8">
+        <form class="editUserForm" [formGroup]="editUserForm" novalidate>
+          <div class="userName">
+          <input type="text" id="inputUsername" [formControlName]="'userName'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="email">
+          <input type="text" id="inputEmail" [formControlName]="'email'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="role" id="roleId">
+            <p>
+              <input type="radio" [formControlName]="'role'" name="role" value="ROLE_USER" [checked]="!isAdmin(user.role)"/>USER
+            </p>
+            <p>
+              <input type="radio" [formControlName]="'role'" name="role" value="ROLE_ADMIN" [checked]="isAdmin(user.role)"/>ADMIN
+            </p>
+          </div>
+          <hr>
+              <form class="save">
+                <button class="saveButton"><a (click)="save()">Save</a> </button>
+              </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
