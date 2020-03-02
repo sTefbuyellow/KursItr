@@ -11,10 +11,22 @@
       </div>
       <div class="form-group">
         <label class="page-content">Tag</label>
-        <editor [formControlName]="'tag'" [init]="{plugins: 'link'}"></editor>
+        <input type="text" [formControlName]="'tag'" class="form-control" placeholder="tag">
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Send</button>
+        <label class="page-content">Needed</label>
+        <input type="number" [formControlName]="'needed'" class="form-control" placeholder="Amount of money">
+      </div>
+      <div class="form-group">
+        <label class="page-content">Ending Date</label>
+        <input type="text" [formControlName]="'endingDate'" class="form-control" placeholder="endingDate">
+      </div>
+      <div class="form-group">
+        <label class="page-content">Bonus</label>
+        <input type="text" [formControlName]="'bonus'" class="form-control" placeholder="Bonus">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="sendBtn">Send</button>
       </div>
     </form >
   </div>

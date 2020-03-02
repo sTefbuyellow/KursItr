@@ -24,13 +24,24 @@ export class AddPageComponent implements OnInit {
     });
     this.addPageForm = new FormGroup({
       name: new FormControl(''),
-      tag: new FormControl('')
+      tag: new FormControl(''),
+      endingDate: new FormControl(''),
+      needed: new FormControl(null),
+      bonus: new FormControl('')
     });
     this.pagePayload = {
       id: '',
       name: '',
+      username: '',
       tag: '',
-      username: ''
+      bonusList: [],
+      creationDate: '',
+      endingDate: '',
+      categories: [],
+      money: 0,
+      needed: 0,
+      images: [],
+      youTubeVideo: '',
     };
   }
 
@@ -38,6 +49,10 @@ export class AddPageComponent implements OnInit {
     this.pagePayload.username = this.otherName;
     this.pagePayload.name = this.addPageForm.get('name').value;
     this.pagePayload.tag = this.addPageForm.get('tag').value;
+    this.pagePayload.endingDate = this.addPageForm.get('endingDate').value;
+    this.pagePayload.needed = this.addPageForm.get('needed').value;
+    this.pagePayload.bonusList.push(this.addPageForm.get('bonus').value);
+    this.pagePayload.categories.push('category');
 
     console.log(this.otherName);
     console.log(this.pagePayload);

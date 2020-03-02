@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PagePayload} from './add-page/page-payload';
 import {UserPayload} from './user/user-payload';
+import {RegisterPayload} from './auth/register-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class UserService {
 
   getOneUser(userId: number): Observable<UserPayload> {
     return this.httpClient.get<UserPayload>('http://localhost:8080/api/users/admin/user/' + userId);
+  }
+
+  getMyData(): Observable<RegisterPayload> {
+    return this.httpClient.get<RegisterPayload>('http://localhost:8080/api/users/my-data');
   }
 
   getMe(): Observable<UserPayload> {

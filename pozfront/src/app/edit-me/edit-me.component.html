@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-8">
+        <form class="editUserForm" [formGroup]="editMeForm" novalidate>
+          <div class="userName">
+            <p>UserName</p>
+            <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="email">
+            <p>Email</p>
+            <input type="text" id="inputEmail" [formControlName]="'email'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="password">
+            <p>Password</p>
+            <input type="text" id="inputPassword" [formControlName]="'password'" class="form-control" required="" autofocus="">
+          </div>
+          <hr>
+          <form class="save">
+            <button class="saveButton"><a (click)="save()">Save</a> </button>
+          </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

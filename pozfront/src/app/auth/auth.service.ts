@@ -34,6 +34,13 @@ export class AuthService {
     return this.localStorageService.retrieve('username') != null;
   }
 
+  isOwner(name: string): boolean {
+    if (this.localStorageService.retrieve('username') === name) {
+      return true;
+    }
+    return false;
+  }
+
   isAdmin(): boolean {
     this.role = this.localStorageService.retrieve('role');
     if (this.role === '[ROLE_ADMIN]') {
@@ -46,6 +53,6 @@ export class AuthService {
     this.localStorageService.clear('authenticationToken');
     this.localStorageService.clear('username');
     this.localStorageService.clear('role');
-   // this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login');
   }
 }

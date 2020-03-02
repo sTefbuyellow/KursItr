@@ -4,24 +4,32 @@
       <div class="col-md-1"></div>
       <div class="col-md-8">
         <div class="row">
-          <div  class="col-md-2">
+          <div  class="col-md-3">
             <h1 class="name">{{user.userName}}</h1>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <form class="CreateAs">
-              <button class="CreateAs" (click)="createAs(user.userName)">Create Page as</button>
+              <button class="createAs" (click)="createAs(user.userName)">Create Page</button>
             </form>
           </div>
+            <div class="col-md-1">
+              <form class="editForm">
+                <button class="editButton"><a href="/edit-me" class="editText">Edit</a></button>
+              </form>
+            </div>
+            <div class="col-md-1">
+              <form class="editForm">
+                <button class="deleteButton" (click)="userService.deleteUser(meID)">delete</button>
+              </form>
+            </div>
         </div>
-        <span>
-          <hr>
-            <p>Id: {{user.id}}</p>
-          <hr>
             <p>Email: {{user.email}}</p>
           <hr>
-        </span>
-      </div>
+          <div>Bonuses</div>
+          <div class="row" *ngFor="let bonus of bonuses ">{{bonus}}</div>
+        <div class="row" *ngFor="let page of pages ">{{page}}</div>
     </div>
 
   </div>
+</div>
 </div>

@@ -1,32 +1,26 @@
 package com.pozoriche.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.pozoriche.service.Bonus;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import java.awt.*;
-import java.time.LocalDateTime;
+import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
 public class PageDto {
 
     private Long Id;
     private String name;
     private String tag;
     private String username;
-    private List bonusList;
-    private List categories;
-    private String money;
+    private List<String> bonusList;
+    private List<String> categories;
+    private Long money;
+    private Long needed;
     private String youTubeVideo;
-    private List images;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime creationDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endingDate;
+    private List<String> images;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private String creationDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private String endingDate;
+
 
     public Long getId() {
         return Id;
@@ -56,28 +50,36 @@ public class PageDto {
         return username;
     }
 
-    public List getBonusList() {
+    public List<String> getBonusList() {
         return bonusList;
     }
 
-    public void setBonusList(List bonusList) {
+    public void setBonusList(List<String> bonusList) {
         this.bonusList = bonusList;
     }
 
-    public List getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 
-    public String getMoney() {
+    public Long getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
+    public void setMoney(Long money) {
         this.money = money;
+    }
+
+    public Long getNeeded() {
+        return needed;
+    }
+
+    public void setNeeded(Long needed) {
+        this.needed = needed;
     }
 
     public String getYouTubeVideo() {
@@ -92,27 +94,27 @@ public class PageDto {
         this.username = username;
     }
 
-    public List getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(List images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
-    public LocalDateTime getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
-    public LocalDateTime getEndingDate() {
+    public String getEndingDate() {
         return endingDate;
     }
 
-    public void setEndingDate(LocalDateTime endingDate) {
+    public void setEndingDate(String endingDate) {
         this.endingDate = endingDate;
     }
 }

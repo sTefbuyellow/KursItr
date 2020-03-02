@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-8">
+        <form class="editUserForm" [formGroup]="editPageForm" novalidate>
+          <div class="name">
+            <p>Name</p>
+            <input type="text" id="inputUsername" [formControlName]="'name'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="tag">
+            <P>Tag</P>
+            <input type="text" id="inputTag" [formControlName]="'tag'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="tag">
+            <p>Ending Date</p>
+            <input type="text" id="inputEndingDate" [formControlName]="'endingDate'" class="form-control" required="" autofocus="">
+          </div>
+          <div class="tag">
+            <p>Needed</p>
+            <input type="text" id="inputNeeded" [formControlName]="'needed'" class="form-control" required="" autofocus="">
+          </div>
+          <hr>
+          <form class="save">
+            <button class="saveButton"><a (click)="save()">Save</a> </button>
+          </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

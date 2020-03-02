@@ -28,7 +28,9 @@ export class EditUserComponent implements OnInit {
       id: '',
       userName: '',
       email: '',
-      role: ''
+      role: '',
+      bonusList: [],
+      donated: [],
     };
   }
 
@@ -57,7 +59,6 @@ export class EditUserComponent implements OnInit {
   this.user.role = this.editUserForm.get('role').value;
   this.user.email = this.editUserForm.get('email').value;
   this.user.userName = this.editUserForm.get('userName').value;
-  console.log(this.user.role + ' ' + this.localStorageService.retrieve('role'));
   this.userService.refreshUser(this.user, this.userId).subscribe((data: UserPayload) => {
       console.log(data);
       if (this.localStorageService.retrieve('role') === '[ROLE_ADMIN]' &&  this.user.role === 'ROLE_USER') {

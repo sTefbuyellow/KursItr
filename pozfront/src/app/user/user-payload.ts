@@ -3,4 +3,6 @@ export  class UserPayload  {
   userName: string;
   email: string;
   role: string;
+  bonusList: [];
+  donated: [];
 }

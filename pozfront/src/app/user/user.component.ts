@@ -22,7 +22,9 @@ export class UserComponent implements OnInit {
       id: '',
       userName: '',
       email: '',
-      role: ''
+      role: '',
+      bonusList: [],
+      donated: []
     };
   }
 

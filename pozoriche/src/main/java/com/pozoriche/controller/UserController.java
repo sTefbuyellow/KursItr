@@ -2,6 +2,7 @@ package com.pozoriche.controller;
 
 import com.pozoriche.dto.LoginRequest;
 import com.pozoriche.dto.PageDto;
+import com.pozoriche.dto.RegisterRequest;
 import com.pozoriche.dto.UserDto;
 import com.pozoriche.model.User;
 import com.pozoriche.service.UserService;
@@ -19,6 +20,11 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/my-data")
+    public ResponseEntity<RegisterRequest> getMyData(){
+        return new ResponseEntity<>(userService.getMyData(), HttpStatus.OK);
+    }
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getMe(){

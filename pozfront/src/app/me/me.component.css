@@ -1,0 +1,35 @@
+.editButton{
+  border-radius: 5px ;
+  border: #24292e;
+  width: 50px;
+  height: 50px;
+  background-color: #6c3995;
+}
+
+.deleteButton{
+  border-radius: 5px ;
+  border: #24292e;
+  width: 60px;
+  height: 50px;
+  background-color: #6c3995;
+}
+
+.createAs{
+  border-radius: 5px ;
+  border: #24292e;
+  width: 80px;
+  height: 50px;
+  background-color: #6c3995;
+}
+
+.editForm,.CreateAs{
+  color: #24292e;
+  text-decoration: none;
+  float: right;
+  padding-top: 20px;
+}
+
+.editText{
+  color: #24292e;
+  text-decoration: none;
+}

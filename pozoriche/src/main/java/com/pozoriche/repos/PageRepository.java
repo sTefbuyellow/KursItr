@@ -10,4 +10,5 @@ import java.util.List;
 public interface PageRepository extends JpaRepository<Page, Long> {
 
     List<Page> findByTagOrName(String tag, String name);
+    Page findOneByName(String name);
 }

@@ -22,6 +22,8 @@ import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users/users.component';
 import { MeComponent } from './me/me.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
+import { EditMeComponent } from './edit-me/edit-me.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     UserComponent,
     UsersComponent,
     MeComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditPageComponent,
+    EditMeComponent
   ],
     imports: [
         BrowserModule,
@@ -49,11 +53,13 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         RouterModule.forRoot([
           {path: 'page/:id', component: PageComponent},
           {path: '', component: HomeComponent},
-          {path: 'me', component: MeComponent},
-          {path: 'edit/:id', component: EditUserComponent},
+          {path: 'me', component: MeComponent, canActivate: [AuthGuard]},
+          {path: 'edit/:id', component: EditUserComponent, canActivate: [AuthGuard]},
+          {path: 'edit-page/:id', component: EditPageComponent, canActivate: [AuthGuard]},
+          {path: 'edit-me', component: EditMeComponent, canActivate: [AuthGuard]},
           {path: 'home', component: HomeComponent},
-          {path: 'users', component: UsersComponent},
-          {path: 'user/:id', component: UserComponent},
+          {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
+          {path: 'user/:id', component: UserComponent, canActivate: [AuthGuard]},
           {path: 'search/:name', component: SearchComponent},
           {path: 'add-page/:name', component: AddPageComponent, canActivate: [AuthGuard]},
           {path: 'register', component: RegisterComponent},

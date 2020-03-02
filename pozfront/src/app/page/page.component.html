@@ -3,12 +3,49 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-8">
-        <h1 class="name">{{page.name}}</h1>
-        <span>
+        <div class="row">
+        <div class="col-md-2">
+          <h1 class="name">{{page.name}}</h1>
+        </div>
+        <div *ngIf="authService.isAdmin() || authService.isOwner(page.username)" class="edit col-md-1">
+          <form class="editForm">
+            <button class="editButton"><a href="/edit-page/{{page.id}}" class="editText">Edit</a></button>
+          </form>
+        </div>
+        <div *ngIf="authService.isAdmin() || authService.isOwner(page.username)"  class="delete col-md-1">
+          <form class="editForm">
+            <button class="deleteButton" (click)="deletePage()">delete</button>
+          </form>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
               <p>by {{page.username}}</p>
-              </span>
+            </div>
+          <div class="col-md-2">
+            <input type="text" [(ngModel)]="summ" placeholder="Enter amount" class="inputAmount">
+          </div>
+          <div class="col-md-2">
+            <form>
+              <button (click)="donate()" class="donateButton">Donate</button>
+            </form>
+          </div>
+        </div>
         <hr>
+        <p>{{page.money}}</p>
+        <p>pledged of {{page.needed}}</p>
+        <hr>
+        <p>Tag</p>
         <p [innerHTML]="page.tag"></p>
+        <hr>
+        <p>Categories</p>
+        <p>{{page.categories}}</p>
+        <hr>
+        <p>Ending Date</p>
+        <p>{{page.endingDate}}</p>
+        <hr>
+        <p>Bonuses</p>
+        <p>{{page.bonusList}}</p>
         <hr>
       </div>
     </div>
